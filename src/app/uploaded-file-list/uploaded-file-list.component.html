@@ -1,0 +1,52 @@
+
+<br/>
+<br/>
+
+<div class="container"> 
+    <button class="btn btn-primary" (click)="OpenFileUpload()" >File Upload</button> 
+</div>
+<br/>
+
+<div class="container">
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>File Name</th>
+            <th>Status </th>
+            <th>Saved Records Count </th>
+            <th>Validation Failed Records Count</th>
+            <th>Total Records Count</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let file of uploadFileList">
+            <td>{{ file.fileName }}</td>
+            <td>{{ file.status }}</td>
+            <td>{{ file.savedRecordsCount }}</td>
+            <td>{{ file.validationFailedRecordsCount }}</td>
+            <td>{{ file.totalRecordsCount }}</td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+
+
+ <!-- File Upload Modal -->
+ <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
+    <div class="modal-dialog" role="document">
+          <div class="modal-content">
+                <div class="modal-header">
+                      <h4 class="modal-title">{{ModalTitle}}</h4>
+                      <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+                    </div>
+           <div class="modal-body">
+            <app-fileupload></app-fileupload>
+               <!-- <app-purchase [bookID]="bookID" [book]="book"></app-purchase> -->
+                    </div>
+                <div class="modal-footer">
+                      <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+                    </div>
+       </div>
+        </div>
+</div>

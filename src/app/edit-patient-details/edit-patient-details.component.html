@@ -1,0 +1,113 @@
+<br/>
+<div class="container">
+
+    <form [formGroup]="searchPatientForm" >
+    <div class="form-outline mb-4">
+        <label class="form-label" for="firstName">Enter Patient Name</label>
+        <input type="text"  class="form-control" formControlName="patientName"  placeholder="Patient Name"  />
+       
+        <div class="text-danger" *ngIf="s.patientName && s.patientName.invalid && s.patientName.touched">
+          Please patient name.
+        </div>       
+      </div>
+
+      <button type="button" [disabled]="searchPatientForm.invalid" (click)="SearchClick()" class="btn btn-primary btn-block mb-4">Search</button>
+
+    </form>
+
+</div>  
+
+<br/>
+<div class="container bg-light" *ngIf="displayEditForm">
+    
+    <br/>
+    <p class="h2 ">Update Details</p>
+    <br/>
+
+    <form [formGroup]="editPatientForm" >
+  
+      <div class="form-outline mb-4">
+        <label class="form-label" for="firstName">Address 1</label>
+        <input type="text"  class="form-control" formControlName="address1"  placeholder="Address 1"  />
+       
+        <div class="text-danger" *ngIf="f.address1 && f.address1.invalid && f.address1.touched">
+          Please address 1.
+        </div>
+       
+      </div>
+    
+      <div class="form-outline mb-4">
+        <label class="form-label" for="lastName">Address 2</label>
+        <input type="text" class="form-control" formControlName="address2"  placeholder="Address 2" />  
+        
+      </div>
+
+      <div class="form-outline mb-4">
+        <label class="form-label" for="userName">Address 3</label>
+        <input type="text" class="form-control" formControlName="address3"  placeholder="Address 3" />  
+        
+      </div>
+
+      <div class="form-outline mb-4">
+        <label class="form-label" for="userName">District</label>
+        <input type="text" class="form-control" formControlName="district"  placeholder="District" />  
+        <div class="text-danger" *ngIf="f.district && f.district.invalid && f.district.touched">
+          Please enter district .
+        </div>  
+      </div>
+
+      <div class="form-outline mb-4">
+        <label class="form-label" for="userName">State</label>
+        <input type="text" class="form-control" formControlName="state"  placeholder="State" />  
+        <div class="text-danger" *ngIf="f.state && f.state.invalid && f.state.touched">
+          Please enter state.
+        </div>  
+      </div>
+
+      <div class="form-outline mb-4">
+        <label class="form-label" for="userName">Country</label>
+        <input type="text" class="form-control" formControlName="country"  placeholder="Country" />  
+        <div class="text-danger" *ngIf="f.country && f.country.invalid && f.country.touched">
+          Please enter country .
+        </div>  
+      </div>
+
+      <div class="form-outline mb-4">
+        <label class="form-label" for="userName">DOB</label>
+        <input type="date" class="form-control" formControlName="dob"  placeholder="DOB" />  
+        <div class="text-danger" *ngIf="f.dob && f.dob.invalid && f.dob.touched">
+          Please enter DOB .
+        </div>  
+      </div>
+
+      <div class="form-outline mb-4">
+        <label class="form-label" for="emailId">Email ID</label>
+        <input type="text" class="form-control" formControlName="emailId"  placeholder="Email ID" />  
+        <div class="text-danger" *ngIf="f.emailId && f.emailId.invalid && f.emailId.touched">
+          Please enter valid email ID .
+        </div>  
+      </div>
+
+      <div class="form-outline mb-4">
+        <label class="form-label" for="confirmEmailId">Phone Number</label>
+        <input type="text" class="form-control" formControlName="phoneNumber"  placeholder="Phone Number" />  
+        <div class="text-danger" *ngIf="f.phoneNumber && f.phoneNumber.invalid && f.phoneNumber.touched">
+          Please enter valid phone number .
+        </div>  
+      </div>
+    
+    
+      <!-- Submit button -->
+      <button type="button" [disabled]="editPatientForm.invalid" (click)="UpdateClick()" class="btn btn-primary float-right m-2">Update</button>
+      <a class="btn btn-secondary float-right m-2"  routerLink="/dashboard" >Cancel</a>
+    </form>
+  
+    </div>
+
+
+    <div *ngIf="alert" class=" position-fixed bottom-0 end-0 p-3" style="z-index: 11"> 
+        <div class="alert {{alertClass}} alert-dismissible fade show" role="alert">
+           {{alertMessage}} 
+           <button type="button" (click)="closeAlert()" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>          
+        </div>
+      </div>

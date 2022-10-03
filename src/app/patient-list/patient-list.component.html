@@ -1,0 +1,60 @@
+<br/>
+
+<div class="container"> 
+    <button class="btn btn-primary" (click)="OpenEditPatient()" >Edit patient details</button> 
+</div>
+<br/>
+
+
+<div class="container">
+    <table class="table table-striped  ">
+        <thead>
+            <tr>
+                <th>Patient Name</th>
+                <th>Address </th>
+                <th>DOB </th>
+                <th>Email Id</th>
+                <th>Phone Number</th>
+                <th>Drug Id</th>
+                <th>Drug Name</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let patient of patientList">
+                <td>{{ patient.patientName }}</td>
+                <td>{{ patient.ddress1 }} {{ patient.address2 }} {{ patient.address3 }} {{ patient.district }} {{ patient.dtate }} {{ patient.country }}</td>
+                <td>{{ patient.dob | date }}</td>
+                <td>{{ patient.emailId }}</td>
+                <td>{{ patient.phoneNumber }}</td>
+                <td>{{ patient.drugId }}</td>
+                <td>{{ patient.drugName }}</td>
+                <td>
+                    <div *ngIf="patient.status == 'Pending'" >
+                        <button type="button" (click)="ApproveClick(patient)" 
+                        class="btn btn-info float-right m-2">Approve</button>
+                        
+                        <button type="button" (click)="RejectClick(patient)" 
+                        class="btn btn-info float-right m-2">Reject</button>
+                        
+                    </div>
+
+                    <div *ngIf="patient.status != 'Pending'" >
+                        {{ patient.status }}
+                    </div>
+
+                </td>   
+            </tr>
+        </tbody>
+    </table>
+    </div>
+
+    
+    <div *ngIf="alert" class=" position-fixed bottom-0 end-0 p-3" style="z-index: 11"> 
+        <div class="alert {{alertClass}} alert-dismissible fade show" role="alert">
+           {{alertMessage}} 
+           <button type="button" (click)="closeAlert()" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>          
+        </div>
+      </div>
+
+

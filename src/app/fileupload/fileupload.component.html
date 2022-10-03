@@ -1,0 +1,28 @@
+<div class="container">  
+<form [formGroup]="myForm" (ngSubmit)="submit()">
+
+    <div class="form-group">
+        <label for="file">File</label>
+        <input 
+            formControlName="file"
+            id="file" 
+            type="file" 
+            class="form-control"
+            accept=".xlsx,.xls"
+            (change)="onFileChange($event)">
+        <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
+            <div *ngIf="f.file.errors?.['required']">File is required.</div>
+        </div>
+    </div>
+          <br/>
+          <br/>
+    <button class="btn btn-primary" [disabled]="myForm.invalid" type="submit">Submit</button>
+    <div *ngIf="alert" class=" position-fixed bottom-0 end-0 p-3" style="z-index: 11"> 
+        <div class="alert {{alertClass}} alert-dismissible fade show" role="alert">
+           {{alertMessage}} 
+           <button type="button" (click)="closeAlert()" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>          
+        </div>
+      </div>
+</form>
+
+</div>     
