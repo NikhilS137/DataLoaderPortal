@@ -40,6 +40,7 @@ export class FileuploadComponent implements OnInit {
   
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
+      this.fileName = event.target.files[0].name;
       this.myForm.patchValue({
         fileSource: file
       });
@@ -47,7 +48,7 @@ export class FileuploadComponent implements OnInit {
     reader.readAsDataURL(file);
     reader.onload = () => {
         this.base64 = reader.result;
-        this.fileName = event.target.files[0].name;
+        
     };
     
     }
@@ -61,9 +62,11 @@ export class FileuploadComponent implements OnInit {
       strFile : this.base64
     }
 
+    console.log(JSON.stringify(val));
+
     this.service.FileUpload(val).subscribe(
       res => {  
-        console.log("success" );
+        // console.log("success" );
         this.alertMessage="File uploaded successfully.";
         this.alertClass ="alert-success";
 

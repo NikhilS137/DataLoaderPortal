@@ -17,6 +17,8 @@ import { PatientListComponent } from './patient-list/patient-list.component';
 import { EditPatientDetailsComponent } from './edit-patient-details/edit-patient-details.component';
 import { DatePipe } from '@angular/common';
 import { FooterComponent } from './footer/footer.component';
+import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { FooterComponent } from './footer/footer.component';
     PatientListComponent,
     EditPatientDetailsComponent,
     FooterComponent,
+    ForgetpasswordComponent,
+    UserDashboardComponent,
 
   ],
   imports: [

@@ -4,15 +4,20 @@
       Data Loader Portal
     </a>
 
+    <div *ngIf="CheckRole()">
     <div class="collapse navbar-collapse" id="navbarScroll">
       <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-        <li class="nav-item">
-          <a class="nav-link " aria-current="page" routerLink="/dashboard" >Dashboard</a>
+       <li class="nav-item">
+          <a class="nav-link " aria-current="page" routerLink="/dashboard" >Patient Inquiry</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/filelist" >File Upload</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/updatepatient" >Update Patient Details</a>
+        </li>
         </ul>
+      </div>
       </div>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-list-4" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,7 +31,7 @@
             <img src="https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png" width="40" height="40" class="rounded-circle">
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" routerLink="/Dashboard">Dashboard</a>
+            <!-- <a class="dropdown-item" routerLink="/Dashboard">Dashboard</a> -->
             <a class="dropdown-item" (click)="logOutClick()">Log Out</a>
           </div>
         </li>   

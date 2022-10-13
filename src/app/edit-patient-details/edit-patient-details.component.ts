@@ -34,8 +34,10 @@ export class EditPatientDetailsComponent implements OnInit {
     state : new FormControl('',[Validators.required]),
     country : new FormControl('',[Validators.required]),
     dob : new FormControl('',[Validators.required]),
-    emailId : new FormControl('',[Validators.required,Validators.email]),
-    phoneNumber : new FormControl('',[Validators.required])
+    emailId : new FormControl('',[Validators.required,Validators.email,
+      Validators.pattern("^[A-Za-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
+    phoneNumber : new FormControl('',[Validators.required,
+    Validators.pattern("^[0-9]{10}$")])
   })
 
   get s(){
@@ -52,18 +54,32 @@ export class EditPatientDetailsComponent implements OnInit {
   }
 
   SearchClick(){
-    this.displayEditForm =true;
-    console.log(this.s.patientName.value);
+    
+    // console.log(this.s.patientName.value);
     this.service.GetPatientDetailsByName(this.s.patientName.value).subscribe(
       response => { this.searchResult = response ;
         console.log(this.searchResult);
-        if(this.searchResult != undefined)
+        if(this.searchResult != undefined){
+          this.displayEditForm =true;
         this.BindDataToForm();
+        }
+        else
+        {
+        this.displayEditForm =false;
+        this.alertMessage="Records not found.";
+        this.alertClass ="alert-warning";
+
+        this.alert=true;
+           setTimeout(() => {
+                              this.alert=false;
+                          }, 4000); //alert will disappear after 4 sec
+       
+        }
       }
      
     );
    
-    console.log("Search Clicked ");
+    // console.log("Search Clicked ");
   }
 
   BindDataToForm(){
@@ -80,7 +96,7 @@ export class EditPatientDetailsComponent implements OnInit {
 
 
   UpdateClick(){
-    console.log("Update Clicked ");
+    // console.log("Update Clicked ");
 
     var val ={
       Id : this.searchResult.id,
@@ -95,7 +111,7 @@ export class EditPatientDetailsComponent implements OnInit {
       PhoneNumber : this.f.phoneNumber.value
     }
 
-    console.log(JSON.stringify(val));
+    // console.log(JSON.stringify(val));
 
     this.service.UpdatePatientDetails(this.searchResult.id,val).subscribe(
       res => {
@@ -109,6 +125,7 @@ export class EditPatientDetailsComponent implements OnInit {
                           }, 4000); //alert will disappear after 4 sec
         
          this.clearControls();
+         this.displayEditForm =false;
 
        },
        (error) => {
@@ -140,6 +157,7 @@ export class EditPatientDetailsComponent implements OnInit {
   }
 
   clearControls(){
+    this.searchResult ="";
   this.editPatientForm.reset();
   this.searchPatientForm.reset();
   }
@@ -147,6 +165,58 @@ export class EditPatientDetailsComponent implements OnInit {
   closeAlert(){
     this.alert=false;
   }
+
+
+  ApproveClick(){
+    this.CallUpdateServiceAPI(this.searchResult.id,"Approved");
+}
+
+RejectClick(){
+  this.CallUpdateServiceAPI(this.searchResult.id,"Rejected");
+}
+
+
+CallUpdateServiceAPI(id:number,status:string){
+this.service.UpdatePatientStatus(id,status).subscribe(
+  res => {
+    this.alertMessage="Status updated successfully.";
+    this.alertClass ="alert-success";
+
+    this.alert=true;
+       setTimeout(() => {
+                          this.alert=false;
+                      }, 4000); //alert will disappear after 4 sec
+    
+                      this.clearControls();
+                      this.displayEditForm =false;
+
+   },
+   (error) => {
+     if(error.status == "400"){
+       console.log("Invalid Data");
+
+       this.alertMessage="Invalid Data";
+       this.alertClass ="alert-danger";
+   this.alert=true;
+      setTimeout(() => {
+                         this.alert=false;
+                     }, 4000); //alert will disappear after 4 sec
+     }
+     else
+       {
+         console.log("Something Went Wrong.");
+         
+       this.alertMessage="Something went wrong";
+       this.alertClass ="alert-danger";
+   
+       this.alert=true;
+          setTimeout(() => {
+                             this.alert=false;
+                         }, 4000); //alert will disappear after 4 sec
+     }
+    }
+);
+}
 
 
 

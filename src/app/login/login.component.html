@@ -31,13 +31,13 @@
   </div>  
 
    <div class="pb-2">  
-  <button type="submit" [disabled]="loginForm.invalid" (click)="login()" class="btn btn-dark w-100 font-weight-bold mt-2">Submit</button>  
+  <button type="submit" id="btnSubmit" [disabled]="loginForm.invalid" (click)="login()" class="btn btn-dark w-100 font-weight-bold mt-2">Submit</button>  
    </div>  
  </form>  
 
  <div class="d-flex align-items-center justify-content-between">  
  
-    <div><a href="#">Forget Password?</a></div>  
+    <div><a routerLink="/forgetpassword">Forget Password?</a></div>  
     <div *ngIf="alert" class=" position-fixed bottom-0 end-0 p-3" style="z-index: 11"> 
         <div class="alert {{alertClass}} alert-dismissible fade show" role="alert">
            {{alertMessage}} 

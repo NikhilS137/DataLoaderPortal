@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
       password : this.loginForm.controls['password'].value
     }
 
-    console.log("value =" + JSON.stringify(val));
+    // console.log("value =" + JSON.stringify(val));
 
     this.service.Login(val).subscribe(
       res => {  
@@ -53,6 +53,9 @@ export class LoginComponent implements OnInit {
         this.alertClass ="alert-success";
 
         localStorage.setItem('userLoggedIn', "true");
+        // store jwt token in local storage to keep user logged in between page refreshes
+        localStorage.setItem('token', this.response.token);
+        localStorage.setItem('user', JSON.stringify(this.response.user));
         
         this.router.navigate(['/header']);
 

@@ -1,0 +1,83 @@
+<br/>
+<div class="container">
+    <div class="card text-center">
+        <div class="card-header">
+         <h4> Patient Information</h4>
+        </div>
+        <div class="card-body">
+          <!-- <h5 class="card-title">Special title treatment</h5> -->
+         
+          <form>
+            <div class="row mb-3">
+                <label for="inputEmail" class="col-sm-2 col-form-label text-end"><b> Patient Name :</b> </label>
+                <div class="col-sm-4">
+                    <input type="text" readonly class="form-control-plaintext" id="inputPatientName" value="{{patientName}}">
+                </div>
+                <label for="inputDOB" class="col-sm-2 col-form-label text-end"> <b>Phone Number :</b> </label>
+                <div class="col-sm-4">
+                     <label for="lblDOB" class="col-sm-12 col-form-label text-start"> {{phoneNumber}} </label>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="inputAddress" class="col-sm-2 col-form-label text-end"> <b> Address :</b> </label>
+                <div class="col-sm-10">
+                    <input type="text" readonly class="form-control-plaintext" id="inputAddress" value="{{address}}">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="inputEmailID" class="col-sm-2 col-form-label text-end"> <b>Email ID :</b> </label>
+                <div class="col-sm-4">
+                    <input type="text" readonly class="form-control-plaintext"  id="inputEmailID" value="{{emailID}}">
+                </div>
+                <label for="inputDOB" class="col-sm-2 col-form-label text-end"> <b> DOB : </b></label>
+                <div class="col-sm-4">
+                    <label for="lblDOB" class="col-sm-12 col-form-label text-start"> {{DOB}} </label>
+                </div>
+            </div>
+
+            <!-- <div class="row mb-3">
+                <label for="inputDOB" class="col-sm-2 col-form-label text-end"> <b> DOB : </b></label>
+                <div class="col-sm-4">
+                    <label for="lblDOB" class="col-sm-12 col-form-label text-start"> {{DOB}} </label>
+                </div>
+              
+            </div> -->
+
+            <div class="row mb-3">
+                <label for="inputDrugId" class="col-sm-2 col-form-label text-end"> <b> Drug ID : </b></label>
+                <div class="col-sm-4">
+                    <label for="lblDrugId" class="col-sm-12 col-form-label text-start"> {{drugID}}</label>
+                </div>
+               <label for="inputDrugName" class="col-sm-2 col-form-label text-end"> <b>Drug Name :</b> </label>
+                <div class="col-sm-4">
+                     <label for="lblDrugName" class="col-sm-12 col-form-label text-start"> {{drugName}} </label>
+                </div>
+            </div>
+
+          
+        </form>
+
+<!-- 
+        <form>
+            <div class="row">
+              <div class="col">
+                <label class="form-control">Patient Name</label>
+              </div>
+              <div class="col">
+                <label class="form-control">Test A</label>
+              </div>
+              <div class="col">
+                <label class="form-control">Address</label>
+              </div>
+              <div class="col">
+                <label class="form-control">Add Add</label>
+              </div>
+            </div>
+          </form> -->
+
+        </div>
+        <!-- <div class="card-footer text-muted">
+          2 days ago
+        </div> -->
+      </div>
+  </div>

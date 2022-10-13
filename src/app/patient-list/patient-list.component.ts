@@ -93,5 +93,16 @@ export class PatientListComponent implements OnInit {
     this.alert=false;
   }
 
+  SearchRecordsByNameOrEmailID(event: any){
+    let searchValue = event.target.value;
+    if(searchValue == '')
+    this.loadPatientList();
+    else
+    this.service.SearchPatientDetailsByNameOrEmailID(searchValue).subscribe(
+      response => {this.patientList  = response;}
+    )
+   
+  }
+
 
 }

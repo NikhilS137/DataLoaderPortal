@@ -1,7 +1,10 @@
 <br/>
 
 <div class="container"> 
-    <button class="btn btn-primary" (click)="OpenEditPatient()" >Edit patient details</button> 
+    <!-- <button class="btn btn-primary" (click)="OpenEditPatient()" >Edit patient details</button>  -->
+   <div>
+       <input type="text" id="txtSearch" class="form-control" (keyup)="SearchRecordsByNameOrEmailID($event)"   placeholder="Search by Name/ Email ID" />  
+   </div> 
 </div>
 <br/>
 

@@ -12,12 +12,24 @@ export class HeaderComponent implements OnInit {
   isCollapsed = false;
   emailID : string = "Admin@gmail.com";
 
+  Role="";
+  UserName ="";
+
   constructor(private router:Router) { }
 
   ngOnInit(): void {
     if (localStorage.getItem('userLoggedIn')) {
       this.showHeader =true;
-      this.router.navigate(['/dashboard'])
+      
+      let user = JSON.parse(localStorage.getItem('user') || '');
+      this.UserName = user.username;
+      user.roleId == 1 ? this.Role = "Admin" : this.Role = "User" ;
+
+      if(user.roleId == 1)
+      this.router.navigate(['/dashboard']);
+      else
+      this.router.navigate(['/userDashboard']);
+
     }
     else{
       this.showHeader =false;
@@ -25,11 +37,24 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  CheckRole(){
+    let user = JSON.parse(localStorage.getItem('user') || '');
+   if( user.roleId == 1){
+   return true ;
+   }
+   else
+   return false;
+  }
+
   ShowHeaderOrNot(){
     if (localStorage.getItem('userLoggedIn'))
+    {
     return true;
+    }
     else
+    {
     return false;
+    }
   }
 
   

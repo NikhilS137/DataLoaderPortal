@@ -42,9 +42,14 @@ fu(val:any):Observable<any[]>{
   }
 
   //Get Patient Details By Name
-  GetPatientDetailsByName(name:any):Observable<any[]>{
+  GetPatientDetailsByName(name:any):Observable<any>{
     console.log(this.baseUrl + "GetPatientDetailsByName/"+name);
-    return this.https.get<any[]>(this.baseUrl + "GetPatientDetailsByName?name="+name).pipe(catchError(this.handleError));
+    return this.https.get<any>(this.baseUrl + "GetPatientDetailsByName?name="+name).pipe(catchError(this.handleError));
+  }
+
+  //Get Patient Details By Name or email ID
+  SearchPatientDetailsByNameOrEmailID(searchVal:any):Observable<any[]>{
+    return this.https.get<any[]>(this.baseUrl + "GetPatientDetailsByNameOrEmail?searchValue="+searchVal).pipe(catchError(this.handleError));
   }
 
    //Update Patient Details
@@ -55,6 +60,11 @@ fu(val:any):Observable<any[]>{
   //Update Patient  Status Details
   UpdatePatientStatus(id:number,status:string):Observable<any[]>{
     return this.https.put<any[]>(this.baseUrl + "UpdateStatus/"+id+ "/"+ status,null).pipe(catchError(this.handleError));
+  }
+
+  //Update Patient  Status Details
+ForgetPassowrd(val: any):Observable<any[]>{
+    return this.https.put<any[]>(this.baseUrl + "ForgetPassword",val).pipe(catchError(this.handleError));
   }
 
 
